@@ -4,16 +4,18 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // localStorage by default
 import userReducer from './slices/userSlice'
 import utilityReducer from './slices/utilitySlice'
+import themeReducer from './slices/themeSlice'
 
 const rootReducer = combineReducers({
   user: userReducer,
   utility: utilityReducer,
+  theme: themeReducer, 
 })
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'] // yahi persist hoga
+  whitelist: ['user', 'theme', 'utility'] // yahi persist hoga
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
