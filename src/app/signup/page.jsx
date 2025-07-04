@@ -39,7 +39,7 @@ export default function page() {
 
 
   return (
-    <div className='flex justify-center w-screen h-screen'>
+    <div className='flex justify-center w-screen h-screen bg-[#0001]'>
         <form action="" 
           className={`flex flex-col items-start mt-52 gap-2 w-96 p-4 bg-[#fff2] h-72`}
           onSubmit={ handleSubmit }

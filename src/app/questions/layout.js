@@ -5,6 +5,7 @@ import Link from 'next/link'
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedTag } from '@/store/slices/utilitySlice';
+import ClientWrapper from "@/components/ClientWrapper";
 
 export default function Layout({ children }) {
   const [allTags, setAllTags] = useState([]);
@@ -33,6 +34,7 @@ export default function Layout({ children }) {
   }, [selectedTag])
 
   return (
+    <ClientWrapper >
     <div className={`flex ${theme === 'dark' ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'} min-h-screen`}>
       
       {/* Sidebar */}
@@ -68,5 +70,6 @@ export default function Layout({ children }) {
         {children}
       </main>
     </div>
+    </ClientWrapper>
   )
 }

@@ -96,7 +96,7 @@ export default function Page() {
             <button
               key={level}
               onClick={() => setDifficulty(level)}
-              className={`px-4 py-2 border rounded cursor-pointer 
+              className={`px-4 py-2 border cursor-pointer 
                 ${theme === 'dark' ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-400 hover:bg-gray-200'} 
                 ${difficulty === level ? (theme === 'dark' ? 'bg-blue-700 text-white' : 'bg-blue-600 text-white') : ''}`}
             >
@@ -109,7 +109,7 @@ export default function Page() {
           {token && <AddQuestion getAllQuestions={getAllQuestions} />}
           <button
             onClick={() => dispatch(logout())}
-            className='px-4 py-2 mb-2 bg-red-600 text-white rounded cursor-pointer'
+            className='px-4 py-2 mb-2 bg-red-600 text-white cursor-pointer'
           >
             Logout
           </button>
@@ -126,7 +126,7 @@ export default function Page() {
               return (
                 <div
                   key={question._id}
-                  className={`shadow-lg p-6 cursor-pointer rounded transition duration-300 hover:shadow-xl
+                  className={`shadow-sm p-6 cursor-pointer transition duration-300 hover:shadow-lg
                     ${theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-100 hover:bg-gray-200'}`}
                   onClick={() => setOpenQuestionId(isOpen ? null : question._id)}
                 >
@@ -196,13 +196,13 @@ export default function Page() {
             <textarea value={answer} onChange={(e) => setAnswer(e.target.value)} rows={4}
               placeholder="Answer" className="border p-2 w-full mb-2"></textarea>
             <div className='flex justify-between items-center'>
-              <select className='px-4 py-2 cursor-pointer' value={difficultyText} 
+              <select className='bg-[#fff4] px-4 py-2 cursor-pointer' value={difficultyText} 
                 onChange={(e) => setDifficultyText(e.target.value)}>
                 <option style={{ color: "black" }} value="easy">Easy</option>
                 <option style={{ color: "black" }} value="medium">Medium</option>
                 <option style={{ color: "black" }} value="hard">Hard</option>
               </select>
-              <button type='submit' className="bg-yellow-600 cursor-pointer text-white px-4 py-2 rounded">Update</button>
+              <button type='submit' className="bg-yellow-600 cursor-pointer text-white px-4 py-2">Update</button>
             </div>
           </form>
         </Modal>
@@ -213,11 +213,11 @@ export default function Page() {
           <h2 className="text-xl font-bold mb-4">Are you sure to Delete this Question?</h2>
           <div className="flex gap-4">
             <button onClick={() => handleDeleteQuestion(deleteQuestion)}
-              className='bg-red-600 cursor-pointer text-white px-4 py-2 rounded'>
+              className='bg-red-600 cursor-pointer text-white px-4 py-2'>
               Yes, Delete
             </button>
             <button onClick={() => setDeleteQuestion(false)}
-              className='border cursor-pointer px-4 py-2 rounded'>
+              className='border cursor-pointer px-4 py-2'>
               Cancel
             </button>
           </div>

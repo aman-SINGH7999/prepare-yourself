@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function page() {
   return (
-    <div className='relative w-screen h-screen overflow-hidden'>
+    <div className='relative w-screen h-screen overflow-hidden z-10 bg-black'>
       {/* Background Image */}
       <div className='absolute w-full h-full -z-10 opacity-40'>
         <Image

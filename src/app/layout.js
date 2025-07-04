@@ -24,9 +24,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
-          <ClientWrapper >
+          {/* <ClientWrapper > */}
             {children}
-          </ClientWrapper >
+          {/* </ClientWrapper > */}
           <div id="modal-root"></div>
         </Providers>
         <ToastContainer />

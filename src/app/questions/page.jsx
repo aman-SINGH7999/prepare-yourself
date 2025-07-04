@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '@/store/slices/userSlice'
 import { useRouter } from 'next/navigation'
 import AddQuestion from '@/components/AddQuestion'
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen flex flex-col">
       <div className='flex justify-end gap-2 border-b border-gray-500'>
+        <ThemeToggle />
         {
           token ? 
           <AddQuestion />
@@ -37,7 +39,7 @@ export default function HomePage() {
           Welcome to Your Questions Hub
         </h1>
         
-        <p className="text-lg text-gray-300 max-w-xl text-center">
+        <p className="text-lg text-gray-600 max-w-xl text-center">
           Explore your curated questions, organized by categories and levels. Keep preparing, keep growing!
         </p>
       </div>
