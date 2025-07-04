@@ -6,7 +6,7 @@ export default function Modal({ children, onClose }) {
       <div className="bg-[#fff2] p-6 rounded shadow-lg w-fit relative">
         <button 
           onClick={onClose}
-          className="absolute top-2 right-2"
+          className="absolute top-2 right-2 cursor-pointer"
         >
           ✖
         </button>

@@ -9,6 +9,7 @@ import Modal from '@/components/Modal';
 import { redirect } from 'next/navigation'
 import { logout } from '@/store/slices/userSlice';
 import AddQuestion from '@/components/AddQuestion';
+import { toast } from 'react-toastify';
 
 export default function page() {
     const [difficulty, setDifficulty] = useState("all");
@@ -70,9 +71,10 @@ export default function page() {
         getAllQuestions();
         setUpdateQuestion(false);
         setTag(""); setQuestionText(""); setAnswer(""); setDifficultyText("easy")
-      } catch (err) {
-        console.error("Update failed", err);
-        alert("Failed to update question");
+        toast.success(error?.response?.data?.message || "Question Updated successfully.");
+      } catch (error) {
+        console.error("Update failed", error);
+        toast.error(error?.response?.data?.message || "Failed to update question.");
       }
     }
 
@@ -87,9 +89,10 @@ export default function page() {
     console.log("Deleted:", data);
     getAllQuestions();   // refresh list
     setDeleteQuestion(false);
-  } catch (err) {
-    console.error("Failed to delete question", err);
-    alert("Failed to delete question");
+    toast.success(error?.response?.data?.message || "Question Deleted successfully.");
+  } catch (error) {
+    console.error("Failed to delete question", error);
+    toast.success(error?.response?.data?.message || "Failed to delete question.");
   }
 };
 
@@ -102,7 +105,7 @@ export default function page() {
             <button
               key={level}
               onClick={() => setDifficulty(level)}
-              className={`px-4 py-2 border border-gray-500 ${
+              className={`px-4 py-2 border cursor-pointer border-gray-500 ${
                 difficulty === level ? "bg-[#fff4]" : "bg-[#fff1]"
               }`}
             >
@@ -118,7 +121,7 @@ export default function page() {
           }
           <button
             onClick={() => dispatch(logout())}
-            className={`px-4 py-2 mb-2 border bg-red-600 text-white`}
+            className={`px-4 py-2 mb-2 border cursor-pointer bg-red-600 text-white`}
           >
             Logout
           </button>
@@ -205,12 +208,12 @@ export default function page() {
             <textarea type="text" value={questionText} onChange={(e)=> setQuestionText(e.target.value)} rows={2} placeholder="Question" className="border p-2 w-full mb-2"></textarea>
             <textarea type="text"value={answer} onChange={(e)=> setAnswer(e.target.value)} rows={4} placeholder="Answer" className="border p-2 w-full mb-2"></textarea>
             <div className='flex justify-between items-center'>
-              <select name="" id="" className='bg-[#fff4] px-4 py-2' value={difficultyText} onChange={(e)=> setDifficultyText(e.target.value)}>
+              <select name="" id="" className='bg-[#fff4] px-4 py-2 cursor-pointer' value={difficultyText} onChange={(e)=> setDifficultyText(e.target.value)}>
                 <option style={{color:"black"}} value="easy">Easy</option>
                 <option style={{color:"black"}} value="medium">Medium</option>
                 <option style={{color:"black"}} value="hard">Hard</option>
               </select>
-              <button type='submit' className="bg-yellow-600 text-white px-4 py-2">Update</button>
+              <button type='submit' className="bg-yellow-600 cursor-pointer text-white px-4 py-2">Update</button>
             </div>
           </form>
         </Modal>
@@ -222,13 +225,13 @@ export default function page() {
           <div className="flex gap-4">
             <button
               onClick={() => handleDeleteQuestion(deleteQuestion)}
-              className='bg-red-600 text-white px-4 py-2'
+              className='bg-red-600 cursor-pointer text-white px-4 py-2'
             >
               Yes, Delete
             </button>
             <button
               onClick={() => setDeleteQuestion(false)}
-              className='border px-4 py-2'
+              className='border cursor-pointer px-4 py-2'
             >
               Cancel
             </button>

@@ -7,6 +7,7 @@ import { ImSpinner2 } from "react-icons/im";
 import { redirect, useRouter,  } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAccessKey, setToken } from '@/store/slices/userSlice';
+import { toast } from 'react-toastify';
 
 
 export default function page() {
@@ -27,13 +28,15 @@ export default function page() {
       e.preventDefault();
       try{
           setLoading(true);
-          const { data } = await axios.put(`/api/users`, {accessKey:myAccessKey, password} )
+          const { data } = await axios.put(`/api/users`, {accessKey:myAccessKey, password} );
           console.log("response: ", data);
           dispatch(setToken(data.token));
           dispatch(setAccessKey(myAccessKey));
+          toast.success("Login Successful.");
           router.push('/questions');
       }catch(error){
-          console.log("Error with password",error)
+          toast.error(error?.response?.data?.message || "Access key or Password is incorrect.");
+          console.log("Error with password",error?.response?.data?.message);
       }finally{
           setLoading(false);
       }
@@ -50,9 +53,11 @@ export default function page() {
           });
           console.log("response: ", data);
           dispatch(setAccessKey(myAccessKey));
+          toast.success("Access request accepted.");
           router.push('/questions');
       }catch(error){
-          console.log("Error without password",error)
+          toast.error(error?.response?.data?.message || "Access key not valid");
+          console.log("Error without password",error?.response?.data?.message);
       }finally{
           setLoading(false);
       }

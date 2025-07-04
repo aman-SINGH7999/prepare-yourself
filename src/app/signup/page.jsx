@@ -5,6 +5,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 export default function page() {
   const [loading, setLoading] = useState(false);
@@ -25,8 +26,10 @@ export default function page() {
           setLoading(true);
           const { data } = await axios.post(`/api/users`, {accessKey, password} )
           console.log("response: ", data);
+          toast.success("Register Successfully.")
           router.push('/login');
       }catch(error){
+          toast.error(error?.response?.data?.message || "Something went wrong");
           console.log("Error with password",error)
       }finally{
           setLoading(false);

@@ -27,12 +27,12 @@ export default function HomePage() {
         }
         <button
           onClick={handleLogout}
-          className={`px-4 py-2 mb-2 border bg-red-600 text-white`}
+          className={`px-4 py-2 mb-2 border cursor-pointer bg-red-600 text-white`}
         >
           Logout
         </button>
       </div>
-      <div className='flex flex-1 flex-col mt-40 items-center border-gray-500'>
+      <div className='flex flex-1 flex-col mt-40 items-center border-gray-500 text-center'>
         <h1 className="text-5xl font-extrabold mb-4 drop-shadow-lg">
           Welcome to Your Questions Hub
         </h1>
